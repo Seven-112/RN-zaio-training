@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, FlatList } from "react-native";
 
-const List = () => {
+const MyFlatList = () => {
 
     const teams = [{ id: 1, name: 'Barcelona'}, { id: 2, name: 'Real Madrid'}, { id: 3, name: 'Bayern munich'}];
 
@@ -23,4 +23,4 @@ const List = () => {
     )
 };
 
-export default List;
+export default MyFlatList;

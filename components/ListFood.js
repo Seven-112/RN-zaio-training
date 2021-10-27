@@ -3,10 +3,10 @@ import { View, Image, StyleSheet } from "react-native";
 import { ZaioText, ZaioView } from "../plugin";
 
 const ListFood = (props) => {
-    console.log(props);
+    // console.log(props);
     return (
-        <ZaioView row m={10} p={10}>
-            <ZaioView mh={10}>
+        <ZaioView elevation={2} row m={10} p={10}>
+            <ZaioView mr={10}>
                 <Image source={props.food.img} style={styles.img} />
             </ZaioView>
             <ZaioView middle>
