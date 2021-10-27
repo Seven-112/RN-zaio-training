@@ -16,6 +16,11 @@ const Home = ({navigation}) => {
                 <ZaioText h1 center primary>Counter</ZaioText>              
             </TouchableOpacity>
 
+            <TouchableOpacity 
+                onPress={() => navigation.navigate('ListManagement')}>
+                <ZaioText h1 center primary>List Restau Management</ZaioText>              
+            </TouchableOpacity>
+
             
         </View>
     )

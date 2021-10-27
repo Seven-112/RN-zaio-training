@@ -32,7 +32,7 @@ const ZaioView = (props) => {
 
     ];
     return (
-        <View style={myStyle} {...props}>
+        <View style={myStyle} {...props.style}>
             { props.children }
         </View>
     )
