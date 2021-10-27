@@ -1,33 +1,24 @@
 import React from "react";
 import { View, Image, StyleSheet } from "react-native";
-import ZaioText from "../plugin/ZaioText";
+import { ZaioText, ZaioView } from "../plugin";
 
 const ListFood = (props) => {
     console.log(props);
     return (
-        <View style={styles.container}>
-            <View style={styles.imgContainer}>
+        <ZaioView row m={10} p={10}>
+            <ZaioView mh={10}>
                 <Image source={props.food.img} style={styles.img} />
-            </View>
-            <View>
+            </ZaioView>
+            <ZaioView middle>
                <ZaioText bold h1 >Title</ZaioText>
                <ZaioText grey size={20} normal >subTitle</ZaioText>
-                
-            </View>
-        </View>
+            </ZaioView>
+        </ZaioView>
     )
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        padding: 5,
-        borderWidth: 1,
-        marginBottom: 5
-    },
-    imgContainer: {
-        marginRight: 10
-    },
+  
     img: {
         height: 100,
         width: 100,

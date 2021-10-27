@@ -17,7 +17,7 @@ import { Colors, Size } from "../contants";
         props.success && styles.success,
         props.grey && styles.grey,
         props.white && styles.white,
-        props.size && { fontSize:  props.size },
+        props.size && { fontSize: props.size },
         props.style // reecrire les styles predefinis
     ];
     return (
