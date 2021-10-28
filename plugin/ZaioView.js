@@ -40,7 +40,7 @@ const ZaioView = (props) => {
 
 const styles = StyleSheet.create({
     default:{
-        backgroundColor: Colors.white,
+        //backgroundColor: Colors.white,
         flexDirection: 'column',
     },
     row : {
