@@ -9,7 +9,7 @@ import food5 from '../assets/foods/food5.jpg';
 export default [
     {
         id: 1,
-        title: "Fruits and vegetables",
+        title: "Fruits and vegetables Fruits and vegetables Fruits and vegetables Fruits and vegetables",
         details: "In common language usage, fruit normally means the fleshy seed-associated structures of a plant that are sweet or sour and edible in the raw state",
         img: food1,
         stars: 4,

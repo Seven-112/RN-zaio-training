@@ -1,11 +1,48 @@
 import React from "react";
-import { ScrollView, Image, StyleSheet, TextInput } from "react-native";
-import { Colors } from "../contants";
+import { ScrollView, Image, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { Colors, Size } from "../contants";
 import { ZaioText, ZaioView } from "../plugin";
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Foods from "../contants/Foods";
 
 
 const FoodApp = () => {
+
+    const Popular = () => {
+        return (
+            <ZaioView mt={15}>
+                <ZaioView row justify="between" mb={10}>
+                    <ZaioText size={20} bold>Popular near you</ZaioText>
+                    <ZaioText primary>view more</ZaioText>
+                </ZaioView>
+
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} >
+                    {
+                        Foods.map((food, index) => {
+                            return (
+                                <TouchableOpacity key={index}>
+                                    <ZaioView p={10} style={styles.imgContainer} >
+                                        <Image source={food.img} style={styles.foodImg} />
+                                        <ZaioText numberOfLines={1} size={20} bold>{food.title}</ZaioText>
+                                        <ZaioText numberOfLines={2} grey>{food.details}</ZaioText>
+                                        <ZaioView mt={5}>
+                                            <ZaioView row>
+                                                <Ionicons name="star" color={Colors.primary} size={20} />
+                                                <Ionicons name="star" color={Colors.primary} size={20} />
+                                                <Ionicons name="star" color={Colors.primary} size={20} />
+                                                <Ionicons name="star" color={Colors.primary} size={20} />
+                                            </ZaioView>
+                                        </ZaioView>
+                                    </ZaioView>
+                                </TouchableOpacity>
+                            )
+                        })
+                    }
+                </ScrollView>
+            </ZaioView>
+        )
+    }
+
     return(
         <ScrollView style={styles.container}>
             <ZaioView row justify="between">
@@ -13,7 +50,7 @@ const FoodApp = () => {
                     <ZaioText normal bold>Delivery to</ZaioText>
                     <ZaioView row center>
                         <Ionicons name="location-outline" color={Colors.grey} size={20} />
-                        <ZaioText normal grey>Zaio RN to</ZaioText>
+                        <ZaioText grey>Zaio RN to</ZaioText>
                     </ZaioView>
                 </ZaioView>
                 <Image source={require('../assets/profile.jpg')} style={styles.img} />
@@ -23,6 +60,11 @@ const FoodApp = () => {
                 <TextInput placeholder="Search for Dish or Restaurant" style={styles.input} />
                 <Ionicons name="search" color={Colors.grey} size={25} style={styles.search} />
             </ZaioView>
+
+            {
+                Popular()
+            }
+
         </ScrollView>
     )
 };
@@ -51,6 +93,19 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: 15,
         left: 15
+    },
+    imgContainer :{
+        backgroundColor: Colors.white,
+        borderRadius: 10,
+        width: Size.width - 100 ,
+        marginRight: 15,
+        
+    },
+    foodImg: {
+        borderRadius: 10,
+        marginBottom: 10,
+        width: '100%',
+        height: Size.height / 4
     }
 });
 

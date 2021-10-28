@@ -1,3 +1,8 @@
+import { Dimensions } from "react-native";
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+
 export default {
     h1: {
         fontSize: 30
@@ -7,5 +12,7 @@ export default {
     },
     normal: {
         fontSize: 20
-    }
+    },
+    width,
+    height
 };
