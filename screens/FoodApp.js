@@ -4,6 +4,7 @@ import { Colors, Size } from "../contants";
 import { ZaioText, ZaioView } from "../plugin";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foods from "../contants/Foods";
+import Cats from "../contants/Cats";
 
 
 const FoodApp = () => {
@@ -41,7 +42,29 @@ const FoodApp = () => {
                 </ScrollView>
             </ZaioView>
         )
-    }
+    };
+
+    const Categories = () => (
+        <ZaioView mt={15}>
+            <ZaioView row justify="between" mb={10}>
+                <ZaioText size={20} bold>Expore Categories</ZaioText>
+                <ZaioText primary>show all</ZaioText>
+            </ZaioView>
+
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} >
+                {
+                    Cats.map((cat, index) => 
+                    <TouchableOpacity key={index} style={[styles.cat, { backgroundColor: cat.color }]}>
+                        <ZaioView center>
+                            <Ionicons size={50} name={cat.icon} color={Colors.white} />
+                            <ZaioText h2 bold white>{cat.title}</ZaioText>
+                            <ZaioText white>{cat.places} places</ZaioText>
+                        </ZaioView>
+                    </TouchableOpacity>)
+                }
+            </ScrollView>
+        </ZaioView>
+    );
 
     return(
         <ScrollView style={styles.container}>
@@ -61,9 +84,8 @@ const FoodApp = () => {
                 <Ionicons name="search" color={Colors.grey} size={25} style={styles.search} />
             </ZaioView>
 
-            {
-                Popular()
-            }
+            { Popular() }
+            { Categories() }
 
         </ScrollView>
     )
@@ -106,6 +128,12 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         width: '100%',
         height: Size.height / 4
+    },
+    cat: {
+       borderRadius: 20,
+       marginRight: 15,
+       width: Size.width / 4,
+       height:  Size.width / 3,
     }
 });
 
