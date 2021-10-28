@@ -4,7 +4,7 @@ import ListRestaurant from "../components/ListRestaurant";
 import { ZaioText, ZaioView } from "../plugin";
 
 const ListManagement = () => {
-    const [rest, setRest] = useState([]);
+    const [rest, setRest] = useState(["REST 1"]);
     const [inputRest, setInputRest] = useState("");
 
     const addRestaurant = () => {
@@ -15,6 +15,11 @@ const ListManagement = () => {
         }
     };
 
+    const deleteRest = (id) => {
+        console.log("Id to delete", id);
+        setRest([...rest.filter((item, index) => index != id - 1 )]);
+    };
+
     return (
         <ZaioView p={10} style={{ flex: 1 }}>
             {
@@ -22,7 +27,13 @@ const ListManagement = () => {
                 <ZaioText h1 center>List Management</ZaioText>
             }
             {
-                rest.map((item, index) => <ListRestaurant key={index} name={item} index={index+1} />)
+                rest.map((item, index) => <ListRestaurant 
+                                            key={index} 
+                                            name={item} index={index+1} 
+                                            onDelete={(id)=>{
+                                                deleteRest(id)
+                                            }} />
+                        )
             }
             <Button title="Add a restaurent" 
                 onPress={()=> addRestaurant()}
