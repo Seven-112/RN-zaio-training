@@ -14,6 +14,12 @@ const FoodApp = ({ navigation }) => {
     const [ foodList, setFoodList ] = useState([...Foods]);
     const [ search, setSearch ] = useState("");
 
+    const onSearch = (keyWord) => {
+        setSearch(keyWord);
+        setFoodList([...Foods.filter((food)=>(
+            food.title.toLocaleLowerCase().includes(keyWord.trim().toLocaleLowerCase())))]);
+    };
+
     const Stars = (nbr) => (
         <ZaioView row>
             {
@@ -203,7 +209,7 @@ const FoodApp = ({ navigation }) => {
                     placeholder="Search for Dish or Restaurant" 
                     style={styles.input} 
                     value={search}
-                    onChangeText={(value) => setSearch(value)}
+                    onChangeText={(value) => onSearch(value)}
                 />
 
                 <Ionicons name="search" color={Colors.grey} size={25} style={styles.search} />
