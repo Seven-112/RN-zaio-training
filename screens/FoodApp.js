@@ -68,8 +68,43 @@ const FoodApp = ({ navigation }) => {
         </ZaioView>
     );
 
+    const Recommended = () => (
+        <ZaioView mt={15}>
+            <ZaioView row justify="between" mb={10}>
+                <ZaioText size={20} bold>Recommended</ZaioText>
+                <ZaioText primary>show all</ZaioText>
+            </ZaioView>
+
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} >
+                {
+                    Foods.map((food, index) => {
+                            return (
+                                <TouchableOpacity key={index} onPress={()=> 
+                                    navigation.navigate('DetailsFood', { food })}
+                                >
+                                    <ZaioView p={10} style={styles.recommendedContainer} >
+                                        <Image source={food.img} style={styles.recomImg} />
+                                        <ZaioText numberOfLines={1} size={20} bold>{food.title}</ZaioText>
+                                        <ZaioText numberOfLines={2} grey>{food.details}</ZaioText>
+                                        <ZaioView mt={5}>
+                                            <ZaioView row>
+                                                <Ionicons name="star" color={Colors.primary} size={20} />
+                                                <Ionicons name="star" color={Colors.primary} size={20} />
+                                                <Ionicons name="star" color={Colors.primary} size={20} />
+                                                <Ionicons name="star" color={Colors.primary} size={20} />
+                                            </ZaioView>
+                                        </ZaioView>
+                                    </ZaioView>
+                                </TouchableOpacity>
+                            )
+                        })
+                }
+            </ScrollView>
+        </ZaioView>
+    );
+
     return(
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
             <ZaioView row justify="between">
                 <ZaioView >
                     <ZaioText normal bold>Delivery to</ZaioText>
@@ -88,6 +123,7 @@ const FoodApp = ({ navigation }) => {
 
             { Popular() }
             { Categories() }
+            { Recommended() }
 
         </ScrollView>
     )
@@ -95,9 +131,11 @@ const FoodApp = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingVertical: 25,
+        marginTop: 25,
         paddingHorizontal: 15,
-        backgroundColor: Colors.grey8
+        backgroundColor: Colors.grey8,
+        paddingBottom: 70,
+        marginBottom: 20
     },
     img: {
         height: 50,
@@ -123,13 +161,24 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         width: Size.width - 100 ,
         marginRight: 15,
-        
+    },
+    recommendedContainer :{
+        backgroundColor: Colors.white,
+        borderRadius: 10,
+        width: (Size.width/2) - 50 ,
+        marginRight: 15,
     },
     foodImg: {
         borderRadius: 10,
         marginBottom: 10,
         width: '100%',
         height: Size.height / 4
+    },
+    recomImg: {
+        borderRadius: 10,
+        marginBottom: 10,
+        width: '100%',
+        height: Size.height / 8
     },
     cat: {
        borderRadius: 20,
