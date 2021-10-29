@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState} from "react";
 import { ScrollView, Image, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { Colors, Size } from "../contants";
 import { ZaioText, ZaioView } from "../plugin";
@@ -8,6 +8,8 @@ import Cats from "../contants/Cats";
 
 
 const FoodApp = ({ navigation }) => {
+
+    const [active, setActive ] = useState('Featured');
 
     const Popular = () => {
         return (
@@ -103,6 +105,39 @@ const FoodApp = ({ navigation }) => {
         </ZaioView>
     );
 
+    const handleTab = (tab) => {
+        setActive(tab);
+    };
+
+    const renderTab = (value, id) => {
+       
+        const isActive = active === value;
+
+        return(
+            <TouchableOpacity key={id} style={styles.tab}
+                onPress={() => handleTab(value)}
+            >
+                <ZaioView center>
+                    <ZaioText style={[styles.current, isActive? styles.currentIsActive: null]}>{value}</ZaioText>
+                    <ZaioView style={isActive? styles.active : null}></ZaioView>
+                </ZaioView>
+            </TouchableOpacity>
+        )
+    };
+
+
+    const List = () => (
+        <ZaioView>
+            <ZaioView row>
+               {
+                ['Featured', 'Popular', 'Newest', 'Trending'].map((item, index)=> {
+                    return renderTab(item, index);
+                })
+               }
+            </ZaioView>
+        </ZaioView>
+    );
+
     return(
         <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
             <ZaioView row justify="between">
@@ -124,6 +159,7 @@ const FoodApp = ({ navigation }) => {
             { Popular() }
             { Categories() }
             { Recommended() }
+            { List() }
 
         </ScrollView>
     )
@@ -185,6 +221,25 @@ const styles = StyleSheet.create({
        marginRight: 15,
        width: Size.width / 4,
        height:  Size.width / 3,
+    },
+    active: {
+        borderBottomColor: Colors.primary,
+        borderBottomWidth: 5,
+        width: 30,
+        paddingBottom: 5
+    },
+    current:{
+        color: "black",
+        fontSize: 20,
+        fontWeight: 'bold'
+    },
+    tab: {
+        marginRight: 20,
+        paddingBottom: 20,
+        marginTop: 20
+    },
+    currentIsActive:{
+        color: Colors.primary
     }
 });
 
