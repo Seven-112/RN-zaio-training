@@ -10,7 +10,9 @@ import ListFoodGroad from "../components/ListFoodGroad";
 
 const FoodApp = ({ navigation }) => {
 
-    const [active, setActive ] = useState('Featured');
+    const [ active, setActive ] = useState('Featured');
+    const [ foodList, setFoodList ] = useState([...Foods]);
+    const [ search, setSearch ] = useState("");
 
     const Stars = (nbr) => (
         <ZaioView row>
@@ -116,6 +118,17 @@ const FoodApp = ({ navigation }) => {
 
     const handleTab = (tab) => {
         setActive(tab);
+        if(tab == "Featured"){
+            setFoodList([...foodList.sort((a, b)=> a.id - b.id)])
+        }else if(tab == "Popular"){
+            setFoodList([...foodList.sort((a, b)=> b.stars - a.stars)])
+        }else if(tab == "Newest"){
+            setFoodList([...foodList.sort((a, b)=> b.deliveryTime - a.deliveryTime)])
+        }else if(tab == "Trending"){
+            setFoodList([...foodList.sort((a, b)=> a.location - b.location)])
+        } else{
+            setFoodList([...Foods])
+        }
     };
 
     const renderTab = (value, id) => {
@@ -162,7 +175,7 @@ const FoodApp = ({ navigation }) => {
 
             <ZaioView>
                 {
-                    Foods.map((food, index) => {
+                    foodList.map((food, index) => {
                             return  <ListFoodGroad food={food} key={index} />
                     })
                 }
@@ -186,14 +199,26 @@ const FoodApp = ({ navigation }) => {
             </ZaioView>
 
             <ZaioView mt={20}>
-                <TextInput placeholder="Search for Dish or Restaurant" style={styles.input} />
+                <TextInput 
+                    placeholder="Search for Dish or Restaurant" 
+                    style={styles.input} 
+                    value={search}
+                    onChangeText={(value) => setSearch(value)}
+                />
+
                 <Ionicons name="search" color={Colors.grey} size={25} style={styles.search} />
             </ZaioView>
-
-            { Popular() }
-            { Categories() }
-            { Recommended() }
-            { List() }
+               {
+                   search.trim().length == 0 ?
+                    <>
+                        { Popular() }
+                        { Categories() }
+                        { Recommended() }
+                        { List() }
+                    </> :
+                    List() 
+               }
+               
 
         </ScrollView>
     )
