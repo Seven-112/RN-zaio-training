@@ -5,11 +5,22 @@ import { ZaioText, ZaioView } from "../plugin";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foods from "../contants/Foods";
 import Cats from "../contants/Cats";
+import ListFoodGroad from "../components/ListFoodGroad";
 
 
 const FoodApp = ({ navigation }) => {
 
     const [active, setActive ] = useState('Featured');
+
+    const Stars = (nbr) => (
+        <ZaioView row>
+            {
+                [...Array(nbr).keys()].map((_value, index) => <Ionicons key={index} name="star" color={Colors.primary} size={20} />
+                )
+            }
+            
+        </ZaioView>
+    );
 
     const Popular = () => {
         return (
@@ -31,12 +42,11 @@ const FoodApp = ({ navigation }) => {
                                         <ZaioText numberOfLines={1} size={20} bold>{food.title}</ZaioText>
                                         <ZaioText numberOfLines={2} grey>{food.details}</ZaioText>
                                         <ZaioView mt={5}>
-                                            <ZaioView row>
-                                                <Ionicons name="star" color={Colors.primary} size={20} />
-                                                <Ionicons name="star" color={Colors.primary} size={20} />
-                                                <Ionicons name="star" color={Colors.primary} size={20} />
-                                                <Ionicons name="star" color={Colors.primary} size={20} />
-                                            </ZaioView>
+                                            
+                                            {
+                                                Stars(food.stars)
+                                            }
+                                               
                                         </ZaioView>
                                     </ZaioView>
                                 </TouchableOpacity>
@@ -87,13 +97,12 @@ const FoodApp = ({ navigation }) => {
                                     <ZaioView p={10} style={styles.recommendedContainer} >
                                         <Image source={food.img} style={styles.recomImg} />
                                         <ZaioText numberOfLines={1} size={20} bold>{food.title}</ZaioText>
-                                        <ZaioText numberOfLines={2} grey>{food.details}</ZaioText>
+                                        <ZaioText numberOfLines={1} grey>{food.details}</ZaioText>
                                         <ZaioView mt={5}>
                                             <ZaioView row>
-                                                <Ionicons name="star" color={Colors.primary} size={20} />
-                                                <Ionicons name="star" color={Colors.primary} size={20} />
-                                                <Ionicons name="star" color={Colors.primary} size={20} />
-                                                <Ionicons name="star" color={Colors.primary} size={20} />
+                                                {
+                                                    Stars(food.stars)
+                                                }
                                             </ZaioView>
                                         </ZaioView>
                                     </ZaioView>
@@ -127,13 +136,38 @@ const FoodApp = ({ navigation }) => {
 
 
     const List = () => (
-        <ZaioView>
+        <ZaioView style={styles.listContainer}>
             <ZaioView row>
                {
                 ['Featured', 'Popular', 'Newest', 'Trending'].map((item, index)=> {
                     return renderTab(item, index);
                 })
                }
+            </ZaioView>
+            <ZaioView row justify="between">
+                <ZaioView row style={styles.info}>
+                    <ZaioText grey >Best match</ZaioText>
+                    <Ionicons name="arrow-down" color={Colors.grey} size={20} />
+                </ZaioView>
+                <ZaioView row>
+                    <ZaioView style={styles.info}>
+                        <Ionicons name="grid-outline" color={Colors.grey} size={20} />
+                    </ZaioView>
+
+                    <ZaioView style={styles.info}>
+                        <Ionicons name="options-outline" color={Colors.grey} size={20} />
+                    </ZaioView>
+                </ZaioView>
+            </ZaioView>
+
+            <ZaioView>
+                {
+                    Foods.map((food, index) => {
+                            return  <ListFoodGroad food={food} key={index} />
+                    })
+                }
+
+           
             </ZaioView>
         </ZaioView>
     );
@@ -230,7 +264,7 @@ const styles = StyleSheet.create({
     },
     current:{
         color: "black",
-        fontSize: 20,
+        fontSize: 15,
         fontWeight: 'bold'
     },
     tab: {
@@ -240,6 +274,18 @@ const styles = StyleSheet.create({
     },
     currentIsActive:{
         color: Colors.primary
+    },
+    listContainer:{
+        backgroundColor: Colors.white,
+        marginTop: 20,
+        padding: 20,
+        borderRadius: 25
+    },
+    info: {
+        backgroundColor: Colors.grey8,
+        padding: 5,
+        borderRadius: 10,
+        marginRight: 5
     }
 });
 
