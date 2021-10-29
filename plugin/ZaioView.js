@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     middle : {
-        alignContent: 'center'
+        flex: 1,
+        justifyContent: 'center',
     }
  });
 

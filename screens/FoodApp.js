@@ -7,7 +7,7 @@ import Foods from "../contants/Foods";
 import Cats from "../contants/Cats";
 
 
-const FoodApp = () => {
+const FoodApp = ({ navigation }) => {
 
     const Popular = () => {
         return (
@@ -21,7 +21,9 @@ const FoodApp = () => {
                     {
                         Foods.map((food, index) => {
                             return (
-                                <TouchableOpacity key={index}>
+                                <TouchableOpacity key={index} onPress={()=> 
+                                    navigation.navigate('DetailsFood', { food })}
+                                >
                                     <ZaioView p={10} style={styles.imgContainer} >
                                         <Image source={food.img} style={styles.foodImg} />
                                         <ZaioText numberOfLines={1} size={20} bold>{food.title}</ZaioText>
@@ -55,7 +57,7 @@ const FoodApp = () => {
                 {
                     Cats.map((cat, index) => 
                     <TouchableOpacity key={index} style={[styles.cat, { backgroundColor: cat.color }]}>
-                        <ZaioView center>
+                        <ZaioView center middle>
                             <Ionicons size={50} name={cat.icon} color={Colors.white} />
                             <ZaioText h2 bold white>{cat.title}</ZaioText>
                             <ZaioText white>{cat.places} places</ZaioText>
