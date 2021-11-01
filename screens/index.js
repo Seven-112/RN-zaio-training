@@ -6,7 +6,8 @@ import MyFlatList from "./MyFlatList";
 import ListManagement from "./ListManagement";
 import FoodApp from "./FoodApp";
 import DetailsFood from "./DetailsFood";
+import Store from "./Store";
 
 export {
-    Actions, Home, Counter, List, MyFlatList, ListManagement, FoodApp, DetailsFood
+    Actions, Home, Counter, List, MyFlatList, ListManagement, FoodApp, DetailsFood, Store
 };

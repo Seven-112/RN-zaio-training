@@ -23,7 +23,8 @@ const FoodApp = ({ navigation }) => {
     const Stars = (nbr) => (
         <ZaioView row>
             {
-                [...Array(nbr).keys()].map((_value, index) => <Ionicons key={index} name="star" color={Colors.primary} size={20} />
+                [...Array(nbr).keys()].map((_value, index) => 
+                    <Ionicons key={index} name="star" color={Colors.primary} size={20} />
                 )
             }
             

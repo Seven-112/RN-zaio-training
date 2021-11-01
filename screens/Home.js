@@ -26,6 +26,11 @@ const Home = ({navigation}) => {
                 <ZaioText h1 center primary>Groad Food App by Phap</ZaioText>              
             </TouchableOpacity>
 
+            <TouchableOpacity 
+                onPress={() => navigation.navigate('Store')}>
+                <ZaioText h1 center primary>Store App</ZaioText>              
+            </TouchableOpacity>
+
             
         </View>
     )

@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { Actions, Counter, DetailsFood, FoodApp, Home, List, ListManagement } from "./screens";
+import { Actions, Counter, DetailsFood, FoodApp, Home, List, ListManagement, Store } from "./screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +17,7 @@ const App = () => {
         <Stack.Screen name="DetailsFood" component={DetailsFood}  options={{ title: 'Details' }} />
         <Stack.Screen name="Counter" component={Counter} options={{ title: "Counter" }}  />
         <Stack.Screen name="ListManagement" component={ListManagement} options={{ title: "Restaurant Lists" }}  />
+        <Stack.Screen name="Store" component={Store} options={{ title: "Store" }}  />
 
       </Stack.Navigator>
     </NavigationContainer>
