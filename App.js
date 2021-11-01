@@ -1,15 +1,16 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { Actions, Counter, DetailsFood, FoodApp, Home, List, ListManagement, Store } from "./screens";
+import { Actions, Counter, DetailsFood, FoodApp, Home, List, ListManagement, Onboarding, Store } from "./screens";
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Onboarding">
 
+        <Stack.Screen name="Onboarding" component={Onboarding}  options={{ headerShown: false }}  />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Actions" component={Actions} options={{ headerShown: false }} />
         <Stack.Screen name="List" component={List} options={{ title: "Details" }}  />
