@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { ZaioText, ZaioView } from "../plugin";
-import api from "../api/api";
+import SearchStoreBar from "../components/SearchStoreBar";
+import { ActivityIndicator } from "react-native";
+import useResults from "../hooks/useResults";
 
 const Store = () => {
-    const [products, setProducts] = useState([]);
 
-    const searchProd = async () => {
-        try{
-            const reponse = await api.get('?limit=19');
-            //console.log(reponse.data);
-            setProducts(reponse.data)
-        }catch(err){
-            console.log(`An error occurs ${err}`);
-        }
-    };
-
-    useEffect(()=> {
-        // Call API here
-        searchProd();
-    }, []);
-
+    const [term, setTerm] = useState("");
+    const [state, setState] = useState(true);
+    const [searchProd, products, error] = useResults();
+    
     return (
         <ZaioView>
-            <ZaioText h1>Store</ZaioText>
+            <ZaioText center h1>Store</ZaioText>
+            {
+                state? <ActivityIndicator size="large" color="#0000ff" />: 
+                null
+            }
+            {
+                error? <ZaioText h2 primary>{error}</ZaioText>: null
+            }
+            <SearchStoreBar 
+                term={term}
+                onTermChange={setTerm}
+                onTermEnd={()=> searchProd(term)}
+            />
             <ZaioText h2>{products.length}</ZaioText>
         </ZaioView>
     )
