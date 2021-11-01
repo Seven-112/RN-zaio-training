@@ -3,6 +3,7 @@ import { ZaioText, ZaioView } from "../plugin";
 import SearchStoreBar from "../components/SearchStoreBar";
 import { ActivityIndicator } from "react-native";
 import useResults from "../hooks/useResults";
+import ListProdStore from "../components/ListProdStore";
 
 const Store = () => {
 
@@ -13,10 +14,7 @@ const Store = () => {
     return (
         <ZaioView>
             <ZaioText center h1>Store</ZaioText>
-            {
-                state? <ActivityIndicator size="large" color="#0000ff" />: 
-                null
-            }
+            
             {
                 error? <ZaioText h2 primary>{error}</ZaioText>: null
             }
@@ -25,7 +23,8 @@ const Store = () => {
                 onTermChange={setTerm}
                 onTermEnd={()=> searchProd(term)}
             />
-            <ZaioText h2>{products.length}</ZaioText>
+           
+            <ListProdStore title="Electronics" results={products} />
         </ZaioView>
     )
 };
