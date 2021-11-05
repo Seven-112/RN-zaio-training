@@ -1,29 +1,93 @@
 import React from "react";
 import { ZaioText, ZaioView } from "../plugin";
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
-import { Colors } from "../contants";
+import { Image, StyleSheet, TouchableOpacity, FlatList, Animated } from "react-native";
+import { Colors, Size } from "../contants";
 
 
-const Onboarding = ({navigation}) => {
+const Onboarding = ({navigation, illustrations}) => {
+    const a = new Animated.Value(0);
 
     // renderIllustration
+    const renderIllustration = () => {
+        //console.log(illustrations);
+        return (
+            <ZaioView style={styles.list}>
+                <FlatList
+                    horizontal
+                    pagingEnabled
+                    scrollEnabled
+                    showsHorizontalScrollIndicator={false}
+                    scrollEventThrottle={15}
+                    snapToAlignment="center"
+                    //extraData={}
+                    data={illustrations}
+                    keyExtractor={(item)=> item.id}
+                    renderItem={({item}) => (
+                        <ZaioView center >
+                            <Image  resizeMode='contain'  style={styles.img} source={item.source} />
+                            <ZaioView center>
+                                <ZaioText h1 bold>{item.title}</ZaioText>
+                                <ZaioText  h2 grey>{item.subTitle}</ZaioText>
+                            </ZaioView>
+                        </ZaioView>
+                    )}
+                    onScroll={Animated.event([
+                        {
+                            nativeEvent: { contentOffset: { x: a} }
+                        }
+                    ], { useNativeDriver: false})}
+                />
+            </ZaioView>
+        )
+    };
     // renderSteps
+    const renderSteps = () => {
+        const stepPosition = Animated.divide(a, Size.width);
+
+        return (
+            <ZaioView style={styles.stepsContainer} row>
+                {
+                    illustrations.map((item, index) => {
+                        const opacity = stepPosition.interpolate({
+                            inputRange: [index - 1, index, index + 1],
+                            outputRange: [0.2, 1, 0.2],
+                            extrapolate: 'clamp'
+                        });
+                        return (
+                            <ZaioView bg key={index}
+                                flex={false}
+                                style={[styles.steps, { opacity}]} 
+                                //style={styles.steps} 
+                                animated
+                             />
+
+                        )
+                    })
+                }
+                
+            </ZaioView>
+        )
+    };
 
     return(
         <ZaioView style={styles.container} justify="between" >
            <ZaioView style={styles.top} center justify="between">
-               <Image style={styles.logo} source={require('../assets/onbord3.png')} />
-               <Image style={styles.img} source={require('../assets/onbord1.png')} />
+               <Image style={styles.logo} source={require('../assets/onbord3.png')}/>
+               <ZaioView>
+               {
+                    renderIllustration()
+               }
+               </ZaioView>
+               
            </ZaioView>
            <ZaioView style={styles.bottom} justify="around">
-               <ZaioView center>
-                    <ZaioText h1 bold>Bottom</ZaioText>
-                    <ZaioText  h2 grey>Sut Title</ZaioText>
-               </ZaioView>
+               
                <ZaioView row justify="between" p={50} center>
                    <ZaioView>
-                        <ZaioText>dots</ZaioText>
+                        {
+                            renderSteps()
+                        }
                    </ZaioView>
                    <TouchableOpacity style={styles.button}
                      onPress={() => navigation.navigate('Home')}>
@@ -65,7 +129,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.white
     },
     top: {
-        flex: 2
+        flex: 3,
     },
     bottom: {
         flex: 1
@@ -79,8 +143,9 @@ const styles = StyleSheet.create({
         borderColor: Colors.success
     },
     img: {
-        width: "90%",
-        height: "50%"
+        width: Size.width,
+        height: "50%",
+        overflow: "visible"
     },
     button: {
         backgroundColor: Colors.primary,
@@ -88,6 +153,19 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         borderRadius: 20,
         elevation:5
+    },
+    list: {
+        alignSelf: 'flex-end'
+    },
+    stepsContainer: {
+
+    },
+    steps: {
+        width: 12,
+        height: 12,
+        borderRadius: 12,
+        marginHorizontal: 3,
+        backgroundColor: Colors.primary
     }
 });
 

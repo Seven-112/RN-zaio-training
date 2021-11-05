@@ -28,7 +28,8 @@ const ZaioView = (props) => {
         props.center && styles.center,
         props.middle && styles.middle,
         props.elevation && { elevation: props.elevation },
-        props.color && styles[props.color]
+        props.color && styles[props.color],
+        props.bg && styles.bg,
 
     ];
     return (
@@ -61,6 +62,9 @@ const styles = StyleSheet.create({
     middle : {
         flex: 1,
         justifyContent: 'center',
+    },
+    bg: {
+        backgroundColor: Colors.primary
     }
  });
 
@@ -84,6 +88,8 @@ ZaioView.propTypes = {
     col : PropTypes.bool,
     color: PropTypes.any,
     justify: PropTypes.oneOf(['between', 'around']),
+    bg : PropTypes.bool,
+
     // shadow
     // wrap
     // right
