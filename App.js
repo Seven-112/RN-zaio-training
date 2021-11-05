@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { Actions, Counter, DetailsFood, FoodApp, Home, List, ListManagement, Onboarding, Store } from "./screens";
+import { Actions, Counter, DetailsFood, FoodApp, Home, List, ListManagement, MyOnboarding, Store } from "./screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -10,8 +10,8 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Onboarding">
 
-        <Stack.Screen name="Onboarding" component={Onboarding}  options={{ headerShown: false }}  />
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Onboarding" component={MyOnboarding}  options={{ headerShown: false }}  />
+        <Stack.Screen name="Home" component={Home}  options={{ headerShown: false }} />
         <Stack.Screen name="Actions" component={Actions} options={{ headerShown: false }} />
         <Stack.Screen name="List" component={List} options={{ title: "Details" }}  />
         <Stack.Screen name="FoodApp" component={FoodApp}  options={{ headerShown: false }} />
