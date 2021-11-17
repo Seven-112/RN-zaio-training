@@ -12,6 +12,10 @@ We have implemented this app during the lesson.
 
 [Live Demo Link](https://youtu.be/r08cQporTbw)
 
+## Download App from Google Play
+
+[Google Play](https://play.google.com/store/apps/details?id=com.guillain.test&hl=fr&gl=US)
+
 ## Built With
 
 - JavaScript
