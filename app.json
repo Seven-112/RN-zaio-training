@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FB4E4E"
-      }
+      },
+      "package": "com.guillain.test"
     },
     "web": {
       "favicon": "./assets/favicon.png"

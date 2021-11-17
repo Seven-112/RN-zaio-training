@@ -25,18 +25,6 @@ To get a local copy up and running follow these simple example steps.
 
 ### Setup
 
-You can use [Snack](https://snack.expo.dev/) or any development environement of your choice.
-
-#### Snack
-
-Expo Snack is an open-source platform for running React Native apps in the browser. It dynamically bundles and compiles code and runs it in the Expo Client or in a web-player. Code can be saved as "Snacks" and easily shared with others. Snacks can also be embedded to show "live" previews
-
-- Create an account on [snack](https://snack.expo.dev/)
-- Create a project called ‘List management’
-- Import all codes from this repo `https://github.com/guillainbisimwa/RN-zaio-training.git`
-
-#### Using your Computer
-
 Navigate to your desired location to download the contents of this repository.
 In order to clone this repository just type the following commands over the terminal in Linux or Mac or the Windows cmd console.
 
@@ -90,6 +78,10 @@ Give a ⭐️ if you like this project!
 
 - [Zaio](https://www.zaio.io/)
 - [Snack](https://snack.expo.dev/)
+- [Groad - Food Ordering System - UI/UX Case Study](https://www.behance.net/gallery/92019977/Groad-Food-Ordering-System-UIUX-Case-Study),
+- [Unsplash](https://unsplash.com/) for images
+- 👤[Didierson AMURI](https://github.com/didiamuri)
+- 👤[Daniel rubambura](https://github.com/DanielRub)
 
 ## 📝 License
 
