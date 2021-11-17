@@ -6,6 +6,8 @@
 
 We have implemented this app during the lesson.
 
+![screenshot](./app_screenshot.gif)
+
 ## Live Demo
 
 [Live Demo Link](https://youtu.be/r08cQporTbw)
